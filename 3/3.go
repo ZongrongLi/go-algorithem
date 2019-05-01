@@ -18,7 +18,7 @@ func cow(a []int) (bool, int) {
 	for i := 0; i < 10; i++ {
 		k := a[perm[i][0]] + a[perm[i][1]] + a[perm[i][2]]
 		if k == 10 || k == 20 || k == 30 {
-			return true, perm[i][0] + perm[i][1] + perm[i][2]
+			return true, k
 		}
 	}
 	return false, 0

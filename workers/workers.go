@@ -64,8 +64,9 @@ func do(t *task) {
 
 }
 
-func process(tasks chan task, wait *sync.WaitGroup) {
+func process(tasks chan task, wait *sync.WaitGroup, index int) {
 	for t := range tasks {
+		fmt.Println(index)
 		do(&t)
 	}
 	wait.Done()
@@ -84,7 +85,7 @@ func distributeTask(numbers int, result chan int, tasks chan task) {
 
 	for i := 0; i < numbers; i++ {
 		wait.Add(1)
-		go process(tasks, &wait)
+		go process(tasks, &wait, i)
 	}
 	wait.Wait()
 	close(result)
